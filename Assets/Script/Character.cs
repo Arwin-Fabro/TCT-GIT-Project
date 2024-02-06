@@ -5,9 +5,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public int moveSpeed = 10;
+    //public int Health = 100;
+    //int SlimeDmg = 2;
     public Rigidbody2D rb;
     public Animator animator;
-
     public bool canDash = true;
     public bool isDashing = false;
     public float dashingPower = 2f;
@@ -34,6 +35,14 @@ public class Character : MonoBehaviour
 
         Movement();
         Attack();
+        //Heal
+        /*
+          if (Input.GetKeyDown(KeyCode.H))
+        {
+            PlayerHeal();
+            Debug.Log(Health);
+        }
+         */
     }
 
     void Attack()
@@ -117,5 +126,49 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(dashingCoolDown);
         canDash = true;
     }
+    /*
+     private void PlayerHurt()
+    {
+        Health -= 5;
+    }
+    private void PlayerHeal()
+    {
+        Health += 10;
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Zombie")
+        {
+            PlayerHurt();
+            Debug.Log(Health);
+        }
+        if (other.gameObject.tag == "Arrow")
+        {
+            PlayerHurt();
+            Debug.Log(Health);
+        }
+        if (other.gameObject.tag == "Slime")
+        {
+            Health -= SlimeDmg;
+            Debug.Log(Health);
+        }
+    }
+    public void OnTriggerExit2D(Collider2D Enemy)
+    {
+        if (Enemy.gameObject.tag == "Slime")
+        {
+            Health -= SlimeDmg;
+            Debug.Log(Health);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
 
+        Vector2 impulse = new Vector2(-4, 0);
+        if (other.gameObject.CompareTag("Mimic"))
+        {
+            GetComponent<Rigidbody2D>().AddForce(impulse, ForceMode2D.Impulse);
+        }
+    }
+     */
 }
