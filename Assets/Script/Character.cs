@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
 
     public GameObject EnergyShield;
     public GameObject EnergyShieldPos;
-    public GameObject WizardProjectilePos;
+    public Transform WizardProjectilePos;
     public GameObject WizardProjectile;
 
     public float groundcheckradius;
@@ -43,6 +43,8 @@ public class Character : MonoBehaviour
 
 
     public bool facingRight = true;
+
+    
     // Start is called before the first frame update
     void Start()
     {

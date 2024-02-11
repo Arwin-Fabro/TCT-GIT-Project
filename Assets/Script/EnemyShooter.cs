@@ -12,6 +12,7 @@ public class EnemyShooter : MonoBehaviour
 
     private Animator animator;
     public bool facingRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +34,18 @@ public class EnemyShooter : MonoBehaviour
         {
             timer = 0;
             //shoot();
-            StartCoroutine(shoot());
+            if (EnemyHealth.isDead == false)
+            {
+                StartCoroutine(shoot());
+            }
         }
-        if (player.transform.position.x >= this.gameObject.transform.localScale.x && facingRight)
+        if (player.transform.position.x >= this.gameObject.transform.position.x && facingRight)
         {
-            flip();
+            flip(); //turn left
         }
-        if (player.transform.position.x <= this.gameObject.transform.localScale.x && !facingRight)
+        if (player.transform.position.x <= this.gameObject.transform.position.x && !facingRight)
         {
-            flip();
+            flip(); //turn right
         }
     }
 
