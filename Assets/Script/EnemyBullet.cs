@@ -11,9 +11,12 @@ public class EnemyBullet : MonoBehaviour
 
     private float Timer;
 
+    public Character characterScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        characterScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -21,7 +24,7 @@ public class EnemyBullet : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        transform.rotation = Quaternion.Euler(0, 0, rot + 180);
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // Minus Health
+            characterScript.GetComponent<Character>().TakeDamage(20);
             Destroy(gameObject);
         }
     }

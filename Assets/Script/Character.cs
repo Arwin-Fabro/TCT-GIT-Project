@@ -5,10 +5,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public int moveSpeed = 10;
-    //public int Health = 100;
-    //int SlimeDmg = 2;
     public Rigidbody2D rb;
     public Animator animator;
+
     public bool canDash = true;
     public bool isDashing = false;
     public float dashingPower = 2f;
@@ -16,11 +15,47 @@ public class Character : MonoBehaviour
     public float dashingCoolDown = 1f;
     [SerializeField] private TrailRenderer tr;
 
+    public bool CombatMode = true;
+    public bool GravityMode = false;
+
+    public GameObject EnergyShield;
+    public GameObject EnergyShieldPos;
+    public Transform WizardProjectilePos;
+    public GameObject WizardProjectile;
+
+    public float groundcheckradius;
+    public LayerMask ground;
+    private bool OnGround;
+    public Transform groundcheck;
+    public int MaxJumps = 2;
+    public int NumberOfJumps;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public float maxMana = 80f;
+    public float currentMana;
+
+    public HealthBar healthBar;
+    public ManaBar manaBar;
+
+    private bool isDead = false;
+
+
     public bool facingRight = true;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        CombatMode = true;
+        GravityMode = false;
+        NumberOfJumps = MaxJumps;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        currentMana = maxMana;
+        manaBar.SetMaxMana(maxMana);
+        InvokeRepeating("ManaRegeneration", 5f, 0.5f);
     }
 
     // Update is called once per frame
@@ -32,28 +67,51 @@ public class Character : MonoBehaviour
         {
             return;
         }
-
+        StartCoroutine(Attack());
         Movement();
-        Attack();
-        //Heal
-        /*
-          if (Input.GetKeyDown(KeyCode.H))
-        {
-            PlayerHeal();
-            Debug.Log(Health);
-        }
-         */
+        SwitchModes();
+        Death();
     }
-
-    void Attack()
+    void SwitchModes()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            CombatMode = true;
+            GravityMode = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            CombatMode = false;
+            GravityMode = true;
+        }
+    }
+    IEnumerator Attack()
+    {
+        if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5)
+        {
+            currentMana -= 5;
+            manaBar.SetMana(currentMana);
+            animator.SetTrigger("Attack2");
+            yield return new WaitForSeconds(0.3f);
+            GameObject temp = Instantiate(WizardProjectile, WizardProjectilePos.transform.position, Quaternion.identity) as GameObject;
+            Destroy(temp, 5f);
+        }
+        if ((Input.GetMouseButtonDown(1) && CombatMode && currentMana >= 30))
+        {
+            currentMana -= 30;
+            manaBar.SetMana(currentMana);
+            animator.SetTrigger("Attack1");
+            yield return new WaitForSeconds(0.3f);
+            GameObject temp2 = Instantiate(EnergyShield, EnergyShieldPos.transform.position, Quaternion.identity) as GameObject;
+            Destroy(temp2, 5f);
+        }
+        if (Input.GetMouseButtonDown(0) && GravityMode)
         {
             animator.SetTrigger("Attack1");
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && GravityMode)
         {
-            animator.SetTrigger("Attack2");
+            //Gravity Spell
         }
     }
     void Movement()
@@ -63,7 +121,7 @@ public class Character : MonoBehaviour
             return;
         }
         //Move left and right
-        if (Input.GetKey(KeyCode.D ))
+        if (Input.GetKey(KeyCode.D ) && isDead == false)
         {
             if (!facingRight && isDashing == false)
             {
@@ -71,8 +129,9 @@ public class Character : MonoBehaviour
             }
             animator.SetBool("isRun", true);
             transform.position += transform.right * moveSpeed * Time.deltaTime;
+
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && isDead == false)
         {
             if (facingRight && isDashing == false)
             {
@@ -86,10 +145,16 @@ public class Character : MonoBehaviour
             animator.SetBool("isRun", false);
         }
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && NumberOfJumps >0 && isDead == false)
         {
+
+            NumberOfJumps--;
             animator.SetTrigger("isJump");
             this.rb.AddForce(new Vector2(0, 250));
+        }
+        if (OnGround)
+        {
+            NumberOfJumps = MaxJumps;
         }
 
         //Dash
@@ -99,6 +164,41 @@ public class Character : MonoBehaviour
         }
 
 
+    }
+    void ManaRegeneration()
+    {
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+        }
+        currentMana += 1f;
+        manaBar.SetMana(currentMana);
+        
+        
+
+    }
+    void FixedUpdate()
+    {
+        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        animator.SetTrigger("isHurt");
+        print("Hurt");
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+
+    void Death()
+    {
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            isDead = true;
+            animator.SetTrigger("isDead");
+            
+        }
     }
 
 
@@ -126,49 +226,5 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(dashingCoolDown);
         canDash = true;
     }
-    /*
-     private void PlayerHurt()
-    {
-        Health -= 5;
-    }
-    private void PlayerHeal()
-    {
-        Health += 10;
-    }
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Zombie")
-        {
-            PlayerHurt();
-            Debug.Log(Health);
-        }
-        if (other.gameObject.tag == "Arrow")
-        {
-            PlayerHurt();
-            Debug.Log(Health);
-        }
-        if (other.gameObject.tag == "Slime")
-        {
-            Health -= SlimeDmg;
-            Debug.Log(Health);
-        }
-    }
-    public void OnTriggerExit2D(Collider2D Enemy)
-    {
-        if (Enemy.gameObject.tag == "Slime")
-        {
-            Health -= SlimeDmg;
-            Debug.Log(Health);
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
 
-        Vector2 impulse = new Vector2(-4, 0);
-        if (other.gameObject.CompareTag("Mimic"))
-        {
-            GetComponent<Rigidbody2D>().AddForce(impulse, ForceMode2D.Impulse);
-        }
-    }
-     */
 }
