@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     public int wizardDamage = 30;
     public static bool isDead = false;
 
-    public float deathAnimationTime; // This is how much time your animation plays before destroying
+    public float deathAnimationTime = 1f; // This is how much time your animation plays before destroying
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
             currentHealth = 0;
             isDead = true;
             animator.SetTrigger("isDead");
-            Destroy(this.gameObject, deathAnimationTime);
+            Destroy(thisEnemy.gameObject, deathAnimationTime);
         }
     }
 
