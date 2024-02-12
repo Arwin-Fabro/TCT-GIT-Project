@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Arrows
-  - Portal
-  - WizardProjectile
+  - Slime
+  - Zombie
+  - Skeleton
+  - Arrow
+  - Mimic
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - 
-  - Ground
+  - 
   - 
   - 
   - 
