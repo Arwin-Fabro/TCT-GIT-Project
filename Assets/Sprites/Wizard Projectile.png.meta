@@ -1,0 +1,434 @@
+fileFormatVersion: 2
+guid: 9238019f572595b408901e8835a9a07f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5476343691808269297
+    second: Wizard Projectile_0
+  - first:
+      213: -4323491417476337318
+    second: Wizard Projectile_1
+  - first:
+      213: 3089138082696623574
+    second: Wizard Projectile_2
+  - first:
+      213: -2317929515806890664
+    second: Wizard Projectile_3
+  - first:
+      213: 1867417688978491408
+    second: Wizard Projectile_4
+  - first:
+      213: -2229363648113055082
+    second: Wizard Projectile_5
+  - first:
+      213: 7378677518227526580
+    second: Wizard Projectile_6
+  - first:
+      213: 4317233923996715115
+    second: Wizard Projectile_7
+  - first:
+      213: -765774482531102637
+    second: Wizard Projectile_8
+  - first:
+      213: -5912344631330240208
+    second: Wizard Projectile_9
+  - first:
+      213: 4134785534586381439
+    second: Wizard Projectile_10
+  - first:
+      213: 2346072833360696460
+    second: Wizard Projectile_11
+  - first:
+      213: 3496703695389543116
+    second: Wizard Projectile_12
+  - first:
+      213: -1763391506327472488
+    second: Wizard Projectile_13
+  - first:
+      213: 996466598318200906
+    second: Wizard Projectile_14
+  - first:
+      213: 6473995858481177636
+    second: Wizard Projectile_15
+  - first:
+      213: 1318715895079716737
+    second: Wizard Projectile_16
+  - first:
+      213: -4950946624357574487
+    second: Wizard Projectile_17
+  - first:
+      213: 4606747451784154839
+    second: Wizard Projectile_18
+  - first:
+      213: -7467001679848636965
+    second: Wizard Projectile_19
+  - first:
+      213: 5806282751884355233
+    second: Wizard Projectile_20
+  - first:
+      213: 5019662073994056764
+    second: Wizard Projectile_21
+  - first:
+      213: -8645593269713310241
+    second: Wizard Projectile_22
+  - first:
+      213: -6157751933820707007
+    second: Wizard Projectile_23
+  - first:
+      213: 5977607685481918142
+    second: Wizard Projectile_24
+  - first:
+      213: -2425763840363447478
+    second: Wizard Projectile_25
+  - first:
+      213: -414926537290818803
+    second: Wizard Projectile_26
+  - first:
+      213: -8462367099856955120
+    second: Wizard Projectile_27
+  - first:
+      213: 316138512462748891
+    second: Wizard Projectile_28
+  - first:
+      213: -4390652766558577491
+    second: Wizard Projectile_29
+  - first:
+      213: 3535137107600785794
+    second: Wizard Projectile_30
+  - first:
+      213: -4035689330842497145
+    second: Wizard Projectile_31
+  - first:
+      213: -8086364496656927124
+    second: Wizard Projectile_32
+  - first:
+      213: -5177943451456121328
+    second: Wizard Projectile_33
+  - first:
+      213: 2665543988441647678
+    second: Wizard Projectile_34
+  - first:
+      213: 3422568467990563956
+    second: Wizard Projectile_35
+  - first:
+      213: 2582079562122352250
+    second: Wizard Projectile_36
+  - first:
+      213: 1611280905252183888
+    second: Wizard Projectile_37
+  - first:
+      213: -4570332727755323291
+    second: Wizard Projectile_38
+  - first:
+      213: -8278559176797162325
+    second: Wizard Projectile_39
+  - first:
+      213: -6712331189844177779
+    second: Wizard Projectile_40
+  - first:
+      213: -2877851338565235680
+    second: Wizard Projectile_41
+  - first:
+      213: 7114104755521905536
+    second: Wizard Projectile_42
+  - first:
+      213: -7258565052858038476
+    second: Wizard Projectile_43
+  - first:
+      213: -336471541666705686
+    second: Wizard Projectile_44
+  - first:
+      213: 1166195253237214199
+    second: Wizard Projectile_45
+  - first:
+      213: -1063861816516969817
+    second: Wizard Projectile_46
+  - first:
+      213: -1184339403593505342
+    second: Wizard Projectile_47
+  - first:
+      213: 1976335438706599354
+    second: Wizard Projectile_48
+  - first:
+      213: 3420239940979154099
+    second: Wizard Projectile_49
+  - first:
+      213: -539053923927999450
+    second: Wizard Projectile_50
+  - first:
+      213: -280740347209371822
+    second: Wizard Projectile_51
+  - first:
+      213: 1840877452081613440
+    second: Wizard Projectile_52
+  - first:
+      213: -3194423626900586931
+    second: Wizard Projectile_53
+  - first:
+      213: -5120086689130915619
+    second: Wizard Projectile_54
+  - first:
+      213: -5828721659122261432
+    second: Wizard Projectile_55
+  - first:
+      213: 5211173358404685714
+    second: Wizard Projectile_56
+  - first:
+      213: -2178559314916356380
+    second: Wizard Projectile_57
+  - first:
+      213: -6948640952780193481
+    second: Wizard Projectile_58
+  - first:
+      213: 3389028985788275066
+    second: Wizard Projectile_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Wizard Projectile_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 118
+        height: 113
+      alignment: 9
+      pivot: {x: 0.65136546, y: 0.5499275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3ee22a291effb40800000000000000
+      internalID: 5476343691808269297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard Projectile_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 121
+        height: 114
+      alignment: 9
+      pivot: {x: 0.6636601, y: 0.5605962}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5734128b2deda20800000000000000
+      internalID: 3089138082696623574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard Projectile_4
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 0
+        width: 126
+        height: 113
+      alignment: 9
+      pivot: {x: 0.6589932, y: 0.540755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01808de7e766ae910800000000000000
+      internalID: 1867417688978491408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard Projectile_6
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 19
+        width: 127
+        height: 94
+      alignment: 9
+      pivot: {x: 0.65774125, y: 0.4755036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b3dc12eb14566660800000000000000
+      internalID: 7378677518227526580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard Projectile_8
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 17
+        width: 131
+        height: 95
+      alignment: 9
+      pivot: {x: 0.6857859, y: 0.5003433}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350dca65a2c6f55f0800000000000000
+      internalID: -765774482531102637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard Projectile_11
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 0
+        width: 129
+        height: 116
+      alignment: 9
+      pivot: {x: 0.69931006, y: 0.5691814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8498a9dfccee8020800000000000000
+      internalID: 2346072833360696460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
