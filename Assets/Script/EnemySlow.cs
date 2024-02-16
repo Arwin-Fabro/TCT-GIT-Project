@@ -5,36 +5,67 @@ using UnityEngine;
 public class EnemySlow : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Character player;
+    public GameObject player;
     private float MoveSpeed;
-    private Vector3 directionToPlayer;
-    private Vector3 localScale;
+    public bool Flip;
+    public float groundcheckradius;
+    public LayerMask ground;
+    private bool OnGround;
+    public Transform groundcheck;
+    public Animator SlimeAnim;
+    public Character characterScript;
+    public GameObject Slime;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType(typeof(Character)) as Character;
+        SlimeAnim = GetComponent<Animator>();
         MoveSpeed = 1f;
-        localScale = transform.localScale;
+        SlimeAnim.SetBool("isIdle", true);
+        SlimeAnim.SetBool("isWalking", false);
     }
 
     private void FixedUpdate()
     {
-        MoveEnemy();
+        
+        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
     }
-    private void MoveEnemy()
+    private void Update()
     {
-        directionToPlayer = (player.transform.position - transform.position).normalized;
-        rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * MoveSpeed;
+        float distance = Vector2.Distance(this.transform.position, player.transform.position);
+        if(distance <= 15f)
+        {
+            FollowPlayer();
+        }
+        if(this.transform.position.y <= -6.11)
+        {
+            Destroy(Slime.gameObject);
+        }
     }
-    private void LateUpdate()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(rb.velocity.x > 0)
+        if (other.gameObject.tag == "Player")
         {
-            transform.localScale = new Vector3(localScale.x, localScale.y, localScale.z);
+            characterScript.GetComponent<Character>().TakeDamage(10);
+
         }
-        else if(rb.velocity.x > 0)
+    }
+    void FollowPlayer()
+    {
+        Vector3 scale = transform.localScale;
+        if (player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(-localScale.x, localScale.y, localScale.z);
+            scale.x = Mathf.Abs(scale.x) * -1 * (Flip ? -1 : 1);
+            transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
+            SlimeAnim.SetBool("isIdle", false);
+            SlimeAnim.SetBool("isWalking", true);
         }
+        else
+        {
+            scale.x = Mathf.Abs(scale.x) * (Flip ? -1 : 1);
+            transform.Translate(MoveSpeed * Time.deltaTime * -1, 0, 0);
+            SlimeAnim.SetBool("isIdle", false);
+            SlimeAnim.SetBool("isWalking", true);
+        }
+        transform.localScale = scale;
     }
 }
