@@ -44,6 +44,7 @@ public class Character : MonoBehaviour
 
     public bool facingRight = true;
 
+    public PickUp gravity;
     
     // Start is called before the first frame update
     void Start()
@@ -107,11 +108,11 @@ public class Character : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0) && GravityMode)
         {
-            animator.SetTrigger("Attack1");
+            gravity.MUD();
         }
-        if (Input.GetMouseButtonDown(1) && GravityMode)
+        if (Input.GetMouseButtonUp(0) && GravityMode)
         {
-            //Gravity Spell
+            gravity.MUP();
         }
     }
     void Movement()
