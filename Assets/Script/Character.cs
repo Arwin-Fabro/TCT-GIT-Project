@@ -23,6 +23,10 @@ public class Character : MonoBehaviour
     public Transform WizardProjectilePos;
     public GameObject WizardProjectile;
 
+    public bool canFire;
+    private float fireballTimer;
+    public float TimeBetweenFiring = 0.5f;
+
     public float groundcheckradius;
     public LayerMask ground;
     private bool OnGround;
@@ -88,8 +92,22 @@ public class Character : MonoBehaviour
     }
     IEnumerator Attack()
     {
-        if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5)
+        if (!canFire)
         {
+            fireballTimer += Time.deltaTime;
+            if (fireballTimer > TimeBetweenFiring)
+            {
+                canFire = true;
+                fireballTimer = 0;
+            }
+        }
+
+
+
+
+        if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5 && canFire)
+        {
+            canFire = false;
             currentMana -= 5;
             manaBar.SetMana(currentMana);
             animator.SetTrigger("Attack2");
