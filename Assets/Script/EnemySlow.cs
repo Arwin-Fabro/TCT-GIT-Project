@@ -15,6 +15,9 @@ public class EnemySlow : MonoBehaviour
     public Animator SlimeAnim;
     public Character characterScript;
     public GameObject Slime;
+    public AudioSource SlimeAudio;
+    public AudioClip SlimeHit;
+    public AudioClip SlimeMove;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,6 +25,7 @@ public class EnemySlow : MonoBehaviour
         MoveSpeed = 1f;
         SlimeAnim.SetBool("isIdle", true);
         SlimeAnim.SetBool("isWalking", false);
+        SlimeAudio = gameObject.GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -46,7 +50,7 @@ public class EnemySlow : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             characterScript.GetComponent<Character>().TakeDamage(10);
-
+            SlimeAudio.PlayOneShot(SlimeHit);
         }
     }
     void FollowPlayer()
@@ -58,6 +62,7 @@ public class EnemySlow : MonoBehaviour
             transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
             SlimeAnim.SetBool("isIdle", false);
             SlimeAnim.SetBool("isWalking", true);
+            
         }
         else
         {
@@ -65,6 +70,7 @@ public class EnemySlow : MonoBehaviour
             transform.Translate(MoveSpeed * Time.deltaTime * -1, 0, 0);
             SlimeAnim.SetBool("isIdle", false);
             SlimeAnim.SetBool("isWalking", true);
+            
         }
         transform.localScale = scale;
     }

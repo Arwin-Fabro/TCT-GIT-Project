@@ -17,12 +17,16 @@ public class EnemyHealth : MonoBehaviour
     public static bool isDead = false;
 
     public float deathAnimationTime = 2f; // This is how much time your animation plays before destroying
+
+    public AudioSource Audio;
+    public AudioClip Hurt;
     void Start()
     {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         slider.maxValue = maxHealth;
         slider.value = currentHealth;
+        Audio = gameObject.GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -32,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         animator.SetTrigger("isHurt");
+        Audio.PlayOneShot(Hurt);
         currentHealth -= damage;
         slider.value = currentHealth;
     }

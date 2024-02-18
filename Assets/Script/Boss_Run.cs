@@ -9,6 +9,9 @@ public class Boss_Run : StateMachineBehaviour
     public float speed = 2.5f;
     public float AtkRange = 5f;
     BossLook Boss;
+    public AudioSource BossAudio;
+    public AudioClip Dead;
+    public AudioClip Moving;
     
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -17,6 +20,7 @@ public class Boss_Run : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody2D>();
         Boss = animator.GetComponent<BossLook>();
+        BossAudio = animator.GetComponent<AudioSource>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,6 +29,7 @@ public class Boss_Run : StateMachineBehaviour
         Boss.LookatPlayer();
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+        BossAudio.PlayOneShot(Moving);
         rb.MovePosition(newPos);
 
         if(Vector2.Distance(player.position, rb.position) <= AtkRange)
@@ -33,6 +38,7 @@ public class Boss_Run : StateMachineBehaviour
         }
         if (EnemyHealth.isDead == true)
         {
+            BossAudio.PlayOneShot(Dead);
             speed = 0;
             animator.SetBool("isRunning", false);
             animator.SetTrigger("isDead");
@@ -44,5 +50,4 @@ public class Boss_Run : StateMachineBehaviour
     {
         animator.ResetTrigger("isAttacking");
     }
-
 }

@@ -13,11 +13,15 @@ public class EnemyShooter : MonoBehaviour
     private Animator animator;
     public bool facingRight;
 
+    public AudioSource Archer;
+    public AudioClip Shoot;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        Archer = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class EnemyShooter : MonoBehaviour
     private IEnumerator shoot()
     {
         animator.SetTrigger("isShoot");
+        Archer.PlayOneShot(Shoot);
         yield return new WaitForSeconds(1.2f);
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
