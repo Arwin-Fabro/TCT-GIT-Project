@@ -12,7 +12,11 @@ public class EnemyPatroller : MonoBehaviour
     public float range;
     public Transform Player;
     public Animator WarriorAnim;
+    public AudioSource Warrior;
+    public AudioClip[] WarriorArray;
     public Character characterScript;
+    public int PlayedOnce;
+    public bool WithinRange = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class EnemyPatroller : MonoBehaviour
         WarriorAnim = GetComponent<Animator>();
         WarriorAnim.SetBool("isIdle", true);
         WarriorAnim.SetBool("isRunning", false);
+        Warrior = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,17 +55,28 @@ public class EnemyPatroller : MonoBehaviour
             flip();
             currentpoint = PointB.transform;
         }
-        if(EnemyHealth.isDead == true)
+        if(EnemyHealth.isDead == true && PlayedOnce == 0)
         {
+            PlayedOnce++;
+            EnemyHealth.isDead = false;
             speed = 0;
+            Warrior.clip = WarriorArray[1];
+            Warrior.PlayOneShot(Warrior.clip);
             WarriorAnim.SetBool("isRunning", false);
         }
     }
     void FixedUpdate()
     {
-        if (Vector3.Distance(Player.position, transform.position) <= range)
+        if (Vector3.Distance(Player.position, transform.position) <= range && WithinRange == false)
 
         {
+            WithinRange = true;
+            if(WithinRange == true)
+            {
+                Warrior.clip = WarriorArray[2];
+                Warrior.PlayOneShot(Warrior.clip);
+               
+            }
             speed = 1;
             WarriorAnim.SetBool("isAttacking", true);
             WarriorAnim.SetBool("isRunning", false);
@@ -80,6 +96,8 @@ public class EnemyPatroller : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+        Warrior.clip = WarriorArray[0];
+        Warrior.PlayOneShot(Warrior.clip);
     }
     private void OnDrawGizmos()
     {
