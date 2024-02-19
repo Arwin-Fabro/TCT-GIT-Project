@@ -10,6 +10,8 @@ TagManager:
   - Arrows
   - Portal
   - Ground
+  - Box
+  - Arrow
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Map.SetActive(false);
+            CloseMap();
         }
     }
     public void OpenMap()

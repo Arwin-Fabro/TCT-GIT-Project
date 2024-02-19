@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
     public Transform groundcheck;
     public int MaxJumps = 2;
     public int NumberOfJumps;
+    public float JumpForce = 250;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -169,7 +170,7 @@ public class Character : MonoBehaviour
 
             NumberOfJumps--;
             animator.SetTrigger("isJump");
-            this.rb.AddForce(new Vector2(0, 250));
+            this.rb.AddForce(new Vector2(0, JumpForce));
         }
         if (OnGround)
         {
