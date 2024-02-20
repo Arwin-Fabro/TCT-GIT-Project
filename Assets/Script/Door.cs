@@ -13,6 +13,7 @@ public class Door : MonoBehaviour
     public bool onDoor = false;
     public Text KeyAmount;
     public Text DoorInfo;
+    public Character CharacterScript;
 
     void Start()
     {
@@ -27,15 +28,26 @@ public class Door : MonoBehaviour
             DoorInfo.text = "Door Open";
 
         }
+
         if (onDoor)
         {
             if (Input.GetKeyDown(KeyCode.E) && canEnter)
             {
                 SceneManager.LoadScene(Level);
             }
+            else if (Input.GetKeyDown(KeyCode.E) && !canEnter)
+            {
+                CharacterScript.infoText.text = "Not Enough Keys!";
+                CharacterScript.infoTxt.SetActive(true);
+                Invoke("CloseText", 5f);
+            }
         }
         KeyAmount.text = ": " + Keys + "/" + TotalKeys;
 
+    }
+    public void CloseText()
+    {
+        CharacterScript.infoTxt.SetActive(false);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
