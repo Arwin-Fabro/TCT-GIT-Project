@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 {
     public int moveSpeed = 10;
     public Rigidbody2D rb;
+    public BoxCollider2D BC;
     public Animator animator;
 
     public bool canDash = true;
@@ -62,6 +63,7 @@ public class Character : MonoBehaviour
     public bool facingRight = true;
 
     public PickUp gravity;
+    public string GameOverScene = "GameOver";
     
     // Start is called before the first frame update
     void Start()
@@ -286,7 +288,7 @@ public class Character : MonoBehaviour
     }
     void HealthRegeneration()
     {
-        currentHealth += 0.2f;
+        currentHealth += 1f;
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -301,7 +303,6 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         animator.SetTrigger("isHurt");
-        print("Hurt");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
@@ -312,9 +313,19 @@ public class Character : MonoBehaviour
         {
             currentHealth = 0;
             isDead = true;
+            rb.isKinematic = false;
+            BC.enabled = false;
+            rb.gravityScale = 0;
+            CancelInvoke("HealthRegeneration");
             animator.SetTrigger("isDead");
-            
+            Invoke("GameOver", 3f);
+
+
         }
+    }
+    void GameOver()
+    {
+        SceneManager.LoadScene(GameOverScene);
     }
 
 
