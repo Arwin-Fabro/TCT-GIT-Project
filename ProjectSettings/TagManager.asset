@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - worldborder
+  - WizardProjectile
+  - Enemy
+  - Arrows
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - player
   - ground
   - bg
-  - 
+  - Movable
   - 
   - 
   - 

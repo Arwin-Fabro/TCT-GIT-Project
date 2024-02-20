@@ -11368,6 +11368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 243682954545794198, guid: 8a60734fadeab6943a04f2a0d6c933ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a60734fadeab6943a04f2a0d6c933ed, type: 3}
 --- !u!1001 &375889137217970024
@@ -11380,17 +11385,22 @@ PrefabInstance:
     - target: {fileID: 4573354617295357202, guid: 54da458bc0930e443a86a92cbe37775e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4573354617295357202, guid: 54da458bc0930e443a86a92cbe37775e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6475918699705305305, guid: 54da458bc0930e443a86a92cbe37775e,
         type: 3}
       propertyPath: m_Name
       value: SkeletonArcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475918699705305305, guid: 54da458bc0930e443a86a92cbe37775e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7103525941485332735, guid: 54da458bc0930e443a86a92cbe37775e,
         type: 3}
@@ -11459,12 +11469,12 @@ PrefabInstance:
     - target: {fileID: 1167613217989388711, guid: c741ac8c9e4e73d4eb7cfd03d6cbf362,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167613217989388711, guid: c741ac8c9e4e73d4eb7cfd03d6cbf362,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167613218477031004, guid: c741ac8c9e4e73d4eb7cfd03d6cbf362,
         type: 3}
@@ -11525,6 +11535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167613218477031005, guid: c741ac8c9e4e73d4eb7cfd03d6cbf362,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167613219546801700, guid: c741ac8c9e4e73d4eb7cfd03d6cbf362,
         type: 3}
@@ -11959,12 +11974,12 @@ PrefabInstance:
     - target: {fileID: 5220296478532549134, guid: 101b6404a7116f849a81da735e0e4928,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5220296478532549134, guid: 101b6404a7116f849a81da735e0e4928,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5220296479518556728, guid: 101b6404a7116f849a81da735e0e4928,
         type: 3}
@@ -11990,6 +12005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Skeleton Warrior Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220296479604230388, guid: 101b6404a7116f849a81da735e0e4928,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5220296479604230391, guid: 101b6404a7116f849a81da735e0e4928,
         type: 3}
@@ -12058,12 +12078,12 @@ PrefabInstance:
     - target: {fileID: 6262765093235542362, guid: e1444864c29668044a95ddaf21a8aab8,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6262765093235542362, guid: e1444864c29668044a95ddaf21a8aab8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6262765093425130909, guid: e1444864c29668044a95ddaf21a8aab8,
         type: 3}
@@ -12134,6 +12154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262765093653645973, guid: e1444864c29668044a95ddaf21a8aab8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1444864c29668044a95ddaf21a8aab8, type: 3}
