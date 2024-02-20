@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Box
   - Arrow
+  - Key
   layers:
   - Default
   - TransparentFX
