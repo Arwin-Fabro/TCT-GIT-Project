@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
@@ -17,11 +19,19 @@ public class Character : MonoBehaviour
 
     public bool CombatMode = true;
     public bool GravityMode = false;
+    public bool PortalMode = false;
+
+    public Image CombatCD;
+    public Image DashCD;
 
     public GameObject EnergyShield;
     public GameObject EnergyShieldPos;
     public Transform WizardProjectilePos;
     public GameObject WizardProjectile;
+
+    public bool canFire;
+    private float fireballTimer;
+    public float TimeBetweenFiring = 1f;
 
     public float groundcheckradius;
     public LayerMask ground;
@@ -29,9 +39,10 @@ public class Character : MonoBehaviour
     public Transform groundcheck;
     public int MaxJumps = 2;
     public int NumberOfJumps;
+    public float JumpForce = 250;
 
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100;
+    public float currentHealth;
 
     public float maxMana = 80f;
     public float currentMana;
@@ -41,6 +52,12 @@ public class Character : MonoBehaviour
 
     private bool isDead = false;
 
+    public Text infoText;
+    public GameObject infoTxt;
+    public bool infoDone = true;
+
+    
+
 
     public bool facingRight = true;
 
@@ -49,14 +66,18 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CombatCD.fillAmount = 0;
+        DashCD.fillAmount = 0;
         CombatMode = true;
         GravityMode = false;
-        NumberOfJumps = MaxJumps;
+        PortalMode = false;
+    NumberOfJumps = MaxJumps;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
         InvokeRepeating("ManaRegeneration", 5f, 0.5f);
+        InvokeRepeating("HealthRegeneration", 5f, 1f);
     }
 
     // Update is called once per frame
@@ -70,26 +91,73 @@ public class Character : MonoBehaviour
         }
         StartCoroutine(Attack());
         Movement();
-        SwitchModes();
+        StartCoroutine(SwitchModes());
         Death();
     }
-    void SwitchModes()
+    IEnumerator SwitchModes()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && infoDone)
         {
             CombatMode = true;
             GravityMode = false;
+            PortalMode = false;
+            infoText.text = "Combat Mode";
+            infoDone = false;
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoDone = true;
+            infoTxt.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && infoDone)
         {
             CombatMode = false;
             GravityMode = true;
+            PortalMode = false;
+            infoText.text = "Gravity Mode";
+            infoDone = false;
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoDone = true;
+            infoTxt.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && infoDone)
+        {
+            CombatMode = false;
+            GravityMode = false;
+            PortalMode = true;
+            infoText.text = "Portal Mode";
+            infoDone = false;
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoDone = true;
+            infoTxt.SetActive(false);
         }
     }
     IEnumerator Attack()
     {
-        if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5)
+        //Fire Rate Intervals
+        if (!canFire)
         {
+            CombatCD.fillAmount -= 1 / TimeBetweenFiring * Time.deltaTime;
+            if (CombatCD.fillAmount <= 0)
+            {
+                CombatCD.fillAmount = 0;
+            }
+            fireballTimer += Time.deltaTime;
+            if (fireballTimer > TimeBetweenFiring)
+            {
+                canFire = true;
+                fireballTimer = 0;
+            }
+        }
+
+
+
+        // Ability 1 (Combat Mode) : Shoot Fireball and Shockwave
+        if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5 && canFire)
+        {
+            canFire = false;
+            CombatCD.fillAmount = 1;
             currentMana -= 5;
             manaBar.SetMana(currentMana);
             animator.SetTrigger("Attack2");
@@ -97,8 +165,19 @@ public class Character : MonoBehaviour
             GameObject temp = Instantiate(WizardProjectile, WizardProjectilePos.transform.position, Quaternion.identity) as GameObject;
             Destroy(temp, 5f);
         }
-        if ((Input.GetMouseButtonDown(1) && CombatMode && currentMana >= 30))
+        else if (Input.GetMouseButtonDown(0) && currentMana <= 5 && infoDone)
         {
+            infoDone = false;
+            infoText.text = "Not Enough Mana";
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoTxt.SetActive(false);
+            infoDone = true;
+        }
+        if ((Input.GetMouseButtonDown(1) && CombatMode && currentMana >= 30 && canFire))
+        {
+            canFire = false;
+            CombatCD.fillAmount = 1;
             currentMana -= 30;
             manaBar.SetMana(currentMana);
             animator.SetTrigger("Attack1");
@@ -106,6 +185,17 @@ public class Character : MonoBehaviour
             GameObject temp2 = Instantiate(EnergyShield, EnergyShieldPos.transform.position, Quaternion.identity) as GameObject;
             Destroy(temp2, 5f);
         }
+        else if (Input.GetMouseButtonDown(1) && currentMana <= 30 && infoDone)
+        {
+            infoDone = false;
+            infoText.text = "Not Enough Mana";
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoTxt.SetActive(false);
+            infoDone = true;
+        }
+
+        //Ability 2 (Gravity Mode): Drag Box;
         if (Input.GetMouseButtonDown(0) && GravityMode)
         {
             gravity.MUD();
@@ -113,6 +203,16 @@ public class Character : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && GravityMode)
         {
             gravity.MUP();
+        }
+        
+        //Ability 3(Portal Mode): Shoot Portals
+        if (Input.GetMouseButtonDown(0) && PortalMode)
+        {
+            // Shoot portal1
+        }
+        if (Input.GetMouseButtonDown(1) && PortalMode)
+        {
+            // Shoot portal1
         }
     }
     void Movement()
@@ -151,7 +251,7 @@ public class Character : MonoBehaviour
 
             NumberOfJumps--;
             animator.SetTrigger("isJump");
-            this.rb.AddForce(new Vector2(0, 250));
+            this.rb.AddForce(new Vector2(0, JumpForce));
         }
         if (OnGround)
         {
@@ -166,17 +266,32 @@ public class Character : MonoBehaviour
 
 
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Key")
+        {
+            Door.Keys += 1;
+            Destroy(other.gameObject);
+        }
+    }
     void ManaRegeneration()
     {
+        currentMana += 1f;
         if (currentMana > maxMana)
         {
             currentMana = maxMana;
         }
-        currentMana += 1f;
         manaBar.SetMana(currentMana);
-        
-        
 
+    }
+    void HealthRegeneration()
+    {
+        currentHealth += 0.2f;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        healthBar.SetHealth(currentHealth);
     }
     void FixedUpdate()
     {
@@ -215,6 +330,8 @@ public class Character : MonoBehaviour
     private IEnumerator Dash()
     {
         canDash = false;
+        DashCD.fillAmount = 1;
+        DashCD.fillAmount -= 1 / dashingCoolDown * Time.deltaTime;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
@@ -227,5 +344,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(dashingCoolDown);
         canDash = true;
     }
+
+
 
 }

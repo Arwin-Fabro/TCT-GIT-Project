@@ -32,5 +32,9 @@ public class WizardProjectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - worldborder
+  - WizardProjectile
+  - Enemy
+  - Arrows
+  - Portal
+  - Ground
+  - Box
+  - Arrow
+  - Key
   layers:
   - Default
   - TransparentFX
