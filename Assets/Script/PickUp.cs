@@ -5,23 +5,28 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public bool Pressed = false;
+    private Transform dragging = null;
+    private Vector3 offset;
     public void MUD()
     {
         Pressed = true;
-        GetComponent<Rigidbody2D>().isKinematic = true;
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, LayerMask.GetMask("Movable"));
+        if(hit)
+        {
+            dragging = hit.transform;
+            offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
     public void MUP()
     {
         Pressed = false;
-        GetComponent<Rigidbody2D>().isKinematic = false;
+        dragging = null;
     }
     void Update()
     {
-        if (Pressed)
+        if(dragging != null && Pressed)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = mousePos;
-           
+            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
         
     }
