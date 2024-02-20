@@ -8,6 +8,14 @@ TagManager:
   - WizardProjectile
   - Enemy
   - Arrows
+ Dylan's-Branch
+
+  - Portal
+  - Ground
+  - Box
+  - Arrow
+  - Key
+main
   layers:
   - Default
   - TransparentFX
