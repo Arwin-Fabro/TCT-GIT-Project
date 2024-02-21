@@ -73,7 +73,7 @@ public class EnemyPatroller : MonoBehaviour
             WithinRange = true;
             if(WithinRange == true)
             {
-                Warrior.clip = WarriorArray[2];
+                Warrior.clip = WarriorArray[0];
                 Warrior.PlayOneShot(Warrior.clip);
                
             }
@@ -96,8 +96,7 @@ public class EnemyPatroller : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
-        Warrior.clip = WarriorArray[0];
-        Warrior.PlayOneShot(Warrior.clip);
+
     }
     private void OnDrawGizmos()
     {
