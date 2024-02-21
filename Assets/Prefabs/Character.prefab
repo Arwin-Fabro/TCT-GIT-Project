@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 7
   m_Sprite: {fileID: 4723107735738678597, guid: e3fc27fb6601b5c4ba7f2219120d2155,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rb: {fileID: 3469420833658447650}
+  BC: {fileID: 0}
   animator: {fileID: 1057174040647016888}
   canDash: 1
   isDashing: 0
@@ -287,12 +288,17 @@ MonoBehaviour:
   tr: {fileID: 7765152292358111923}
   CombatMode: 1
   GravityMode: 0
+  PortalMode: 0
+  CombatCD: {fileID: 0}
+  DashCD: {fileID: 0}
   EnergyShield: {fileID: 5108725470803596295, guid: 5a22828a23813274c8e2711c25354580,
     type: 3}
   EnergyShieldPos: {fileID: 3856927309268960794}
   WizardProjectilePos: {fileID: 4382225844239301842}
   WizardProjectile: {fileID: 7033437774660426721, guid: 6c8d4cd9ef43fa84eb63b4d2b5cbf0ff,
     type: 3}
+  canFire: 0
+  TimeBetweenFiring: 1
   groundcheckradius: 0.1
   ground:
     serializedVersion: 2
@@ -300,13 +306,19 @@ MonoBehaviour:
   groundcheck: {fileID: 322118927286867140}
   MaxJumps: 1
   NumberOfJumps: 0
+  JumpForce: 250
   maxHealth: 100
   currentHealth: 0
   maxMana: 80
   currentMana: 0
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
+  infoText: {fileID: 0}
+  infoTxt: {fileID: 0}
+  infoDone: 1
   facingRight: 1
+  gravity: {fileID: 0}
+  GameOverScene: Level
 --- !u!114 &6431575245316820829
 MonoBehaviour:
   m_ObjectHideFlags: 0

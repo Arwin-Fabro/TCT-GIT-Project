@@ -426,7 +426,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: 4723107735738678597, guid: 3e841fc8df8ec2245946a78e05419dc9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -505,9 +505,8 @@ MonoBehaviour:
   WarriorAnim: {fileID: 5220296479518556734}
   Warrior: {fileID: 1940457753054152073}
   WarriorArray:
-  - {fileID: 8300000, guid: 76cbf7ca7145aab4eaafd41e8cf3c8cf, type: 3}
-  - {fileID: 8300000, guid: 803766eee75d91b42b38aef0c9140b9d, type: 3}
   - {fileID: 8300000, guid: fd1cea66bdb94cc418afc1c144b2b4c8, type: 3}
+  - {fileID: 8300000, guid: 803766eee75d91b42b38aef0c9140b9d, type: 3}
   characterScript: {fileID: 0}
   PlayedOnce: 0
   WithinRange: 0
