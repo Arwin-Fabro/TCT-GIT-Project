@@ -307,7 +307,7 @@ public class Character : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    void Death()
+    public void Death()
     {
         if (currentHealth <= 0)
         {
@@ -315,7 +315,8 @@ public class Character : MonoBehaviour
             isDead = true;
             rb.isKinematic = false;
             BC.enabled = false;
-            rb.gravityScale = 0;
+            //rb.gravityScale = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             CancelInvoke("HealthRegeneration");
             animator.SetTrigger("isDead");
             Invoke("GameOver", 3f);

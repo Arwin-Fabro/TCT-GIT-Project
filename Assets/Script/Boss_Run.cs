@@ -11,7 +11,6 @@ public class Boss_Run : StateMachineBehaviour
     BossLook Boss;
     public AudioSource BossAudio;
     public AudioClip Dead;
-    public AudioClip Moving;
     
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -29,7 +28,6 @@ public class Boss_Run : StateMachineBehaviour
         Boss.LookatPlayer();
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        BossAudio.PlayOneShot(Moving);
         rb.MovePosition(newPos);
 
         if(Vector2.Distance(player.position, rb.position) <= AtkRange)
