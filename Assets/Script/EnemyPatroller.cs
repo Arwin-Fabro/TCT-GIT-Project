@@ -75,7 +75,6 @@ public class EnemyPatroller : MonoBehaviour
             {
                 Warrior.clip = WarriorArray[0];
                 Warrior.PlayOneShot(Warrior.clip);
-               
             }
             speed = 1;
             WarriorAnim.SetBool("isAttacking", true);
@@ -84,6 +83,7 @@ public class EnemyPatroller : MonoBehaviour
         }
         if(Vector3.Distance(Player.position, transform.position) > range)
         {
+            WithinRange = false;
             speed = 3;
             WarriorAnim.SetBool("isRunning", true);
             WarriorAnim.SetBool("isAttacking", false);

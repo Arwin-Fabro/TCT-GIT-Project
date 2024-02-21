@@ -40,10 +40,6 @@ public class EnemySlow : MonoBehaviour
         {
             FollowPlayer();
         }
-        if(this.transform.position.y <= -6.11)
-        {
-            Destroy(Slime.gameObject);
-        }
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
