@@ -309,7 +309,7 @@ public class Character : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    void Death()
+    public void Death()
     {
         if (currentHealth <= 0)
         {
