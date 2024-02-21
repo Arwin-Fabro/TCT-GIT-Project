@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public float level;
+    void Start()
+    {
+        level = PlayerPrefs.GetFloat("level");
+    }    
     public void Level1()
     {
         SceneManager.LoadScene("Level1");
@@ -17,5 +22,24 @@ public class Buttons : MonoBehaviour
     public void Level3()
     {
         SceneManager.LoadScene("Level3");
+    }
+    public void R()
+    {
+        if (level==1)
+        {
+            Level1();
+        }
+        if (level==2)
+        {
+            Level2();
+        }
+        if (level == 3)
+        {
+            Level3();
+        }
+        else
+        {
+            Level1();
+        }
     }
 }
