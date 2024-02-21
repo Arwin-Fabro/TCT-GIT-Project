@@ -482,6 +482,7 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   wizardDamage: 30
+  isDead: 0
   deathAnimationTime: 1.5
   Audio: {fileID: 1940457753054152073}
   Hurt: {fileID: 8300000, guid: 8db9e6f3ef33e4845ab7a5a0e7a354c5, type: 3}
@@ -510,6 +511,7 @@ MonoBehaviour:
   characterScript: {fileID: 0}
   PlayedOnce: 0
   WithinRange: 0
+  enemyHealth: {fileID: 5220296479518556732}
 --- !u!50 &5220296479518556731
 Rigidbody2D:
   serializedVersion: 4

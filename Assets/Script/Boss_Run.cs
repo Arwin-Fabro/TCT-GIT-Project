@@ -12,8 +12,9 @@ public class Boss_Run : StateMachineBehaviour
     public AudioSource BossAudio;
     public AudioClip Dead;
     public AudioClip Moving;
+    public EnemyHealth enemyHealth;
     
-    
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -21,6 +22,7 @@ public class Boss_Run : StateMachineBehaviour
         rb = animator.GetComponent<Rigidbody2D>();
         Boss = animator.GetComponent<BossLook>();
         BossAudio = animator.GetComponent<AudioSource>();
+        enemyHealth = animator.GetComponent<EnemyHealth>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -29,14 +31,14 @@ public class Boss_Run : StateMachineBehaviour
         Boss.LookatPlayer();
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        BossAudio.PlayOneShot(Moving);
+        //BossAudio.PlayOneShot(Moving);
         rb.MovePosition(newPos);
 
         if(Vector2.Distance(player.position, rb.position) <= AtkRange)
         {
             animator.SetTrigger("isAttacking");
         }
-        if (EnemyHealth.isDead == true)
+        if (enemyHealth.isDead == true)
         {
             BossAudio.PlayOneShot(Dead);
             speed = 0;

@@ -356,6 +356,7 @@ MonoBehaviour:
   facingRight: 0
   Archer: {fileID: 375889136763581814}
   Shoot: {fileID: 8300000, guid: 026069bb77cbab34e8e4336f136f679c, type: 3}
+  enemyHealth: {fileID: 7809084261386715644}
 --- !u!114 &7809084261386715644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 0
   wizardDamage: 30
+  isDead: 0
   deathAnimationTime: 1.5
   Audio: {fileID: 375889136763581814}
   Hurt: {fileID: 8300000, guid: 8db9e6f3ef33e4845ab7a5a0e7a354c5, type: 3}

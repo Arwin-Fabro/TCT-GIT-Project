@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
     public HealthBar healthBar;
     public ManaBar manaBar;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     public Text infoText;
     public GameObject infoTxt;
@@ -92,10 +92,16 @@ public class Character : MonoBehaviour
             return;
         }
         StartCoroutine(Attack());
-        Movement();
+        //Movement();
         StartCoroutine(SwitchModes());
         Death();
     }
+    void FixedUpdate()
+    {
+        Movement();
+        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
+    }
+
     IEnumerator SwitchModes()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && infoDone)
@@ -295,10 +301,6 @@ public class Character : MonoBehaviour
         }
         healthBar.SetHealth(currentHealth);
     }
-    void FixedUpdate()
-    {
-        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
-    }
 
     public void TakeDamage(int damage)
     {
@@ -314,8 +316,7 @@ public class Character : MonoBehaviour
             currentHealth = 0;
             isDead = true;
             rb.isKinematic = false;
-            BC.enabled = false;
-            rb.gravityScale = 0;
+            
             CancelInvoke("HealthRegeneration");
             animator.SetTrigger("isDead");
             Invoke("GameOver", 3f);
