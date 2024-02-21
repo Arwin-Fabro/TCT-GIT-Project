@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 public class Buttons : MonoBehaviour
 {
     public float level;
-    void Start()
+    void Update()
     {
         level = PlayerPrefs.GetFloat("level");
-    }    
+    }
     public void Level1()
     {
         SceneManager.LoadScene("Level1");
@@ -22,6 +22,10 @@ public class Buttons : MonoBehaviour
     public void Level3()
     {
         SceneManager.LoadScene("Level3");
+    }
+    public void mainmenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     public void R()
     {
@@ -39,7 +43,7 @@ public class Buttons : MonoBehaviour
         }
         else
         {
-            Level1();
+            print("help");
         }
     }
 }

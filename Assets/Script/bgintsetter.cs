@@ -9,8 +9,8 @@ public class bgintsetter : MonoBehaviour
     public float level;
     void Start()
     {
-        
 
+        scene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
