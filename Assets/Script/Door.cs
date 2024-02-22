@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        Keys = 0;
         TotalKeys = GameObject.FindGameObjectsWithTag("Key").Length;
     }
     void Update()
