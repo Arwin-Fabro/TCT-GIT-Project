@@ -35330,6 +35330,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5769449238197781663, guid: 3dc1ecf44fa2f2b418c5ed1833cc259d,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7022936384651955271, guid: 3dc1ecf44fa2f2b418c5ed1833cc259d,
         type: 3}
       propertyPath: m_Name
@@ -76329,7 +76334,7 @@ MonoBehaviour:
   groundcheck: {fileID: 322118927395821354}
   MaxJumps: 1
   NumberOfJumps: 0
-  JumpForce: 500
+  JumpForce: 250
   maxHealth: 100
   currentHealth: 0
   maxMana: 80
