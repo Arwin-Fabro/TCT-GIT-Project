@@ -11,11 +11,7 @@ public class bgintsetter : MonoBehaviour
     {
 
         scene = SceneManager.GetActiveScene();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         level = PlayerPrefs.GetFloat("level");
         if (scene.name == "Level1")
         {
@@ -33,5 +29,11 @@ public class bgintsetter : MonoBehaviour
         {
             return;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

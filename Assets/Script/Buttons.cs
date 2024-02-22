@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Buttons : MonoBehaviour
 {
     public float level;
-    void Update()
+    void Start()
     {
         level = PlayerPrefs.GetFloat("level");
     }
