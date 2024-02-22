@@ -177,6 +177,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 184452789360456003, guid: 8a60734fadeab6943a04f2a0d6c933ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 184452789360456028, guid: 8a60734fadeab6943a04f2a0d6c933ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -73898,7 +73903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999641987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.39, y: -1, z: -168.34424}
+  m_LocalPosition: {x: 61.39, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 2.45, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75300,9 +75305,8 @@ MonoBehaviour:
   WarriorAnim: {fileID: 1660972053059226772}
   Warrior: {fileID: 5013393411838659363}
   WarriorArray:
-  - {fileID: 8300000, guid: 76cbf7ca7145aab4eaafd41e8cf3c8cf, type: 3}
-  - {fileID: 8300000, guid: 803766eee75d91b42b38aef0c9140b9d, type: 3}
   - {fileID: 8300000, guid: fd1cea66bdb94cc418afc1c144b2b4c8, type: 3}
+  - {fileID: 8300000, guid: 803766eee75d91b42b38aef0c9140b9d, type: 3}
   characterScript: {fileID: 7576816429858784274}
   PlayedOnce: 0
   WithinRange: 0

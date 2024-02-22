@@ -325,4 +325,3 @@ MonoBehaviour:
   AtkRange: 5
   BossAudio: {fileID: 0}
   Dead: {fileID: 8300000, guid: 216c4d0ef22a8b443b9fcd23aa5bc757, type: 3}
-  Moving: {fileID: 8300000, guid: 71c32c9fb76eb164e8e9ffe9d3605e9c, type: 3}
