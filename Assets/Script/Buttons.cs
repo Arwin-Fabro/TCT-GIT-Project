@@ -10,7 +10,7 @@ public class Buttons : MonoBehaviour
     void Start()
     {
         level = PlayerPrefs.GetFloat("level");
-    }
+    }    
     public void Level1()
     {
         SceneManager.LoadScene("Level1");
@@ -23,7 +23,7 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("Level3");
     }
-    public void mainmenu()
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
@@ -43,7 +43,7 @@ public class Buttons : MonoBehaviour
         }
         else
         {
-            print("help");
+            Level1();
         }
     }
 }

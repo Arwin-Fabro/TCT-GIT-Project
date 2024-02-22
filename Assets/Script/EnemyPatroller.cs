@@ -17,9 +17,11 @@ public class EnemyPatroller : MonoBehaviour
     public Character characterScript;
     public int PlayedOnce;
     public bool WithinRange = false;
+    public EnemyHealth enemyHealth;
     // Start is called before the first frame update
     void Start()
     {
+        enemyHealth = GetComponent<EnemyHealth>();
         rb = GetComponent<Rigidbody2D>();
         currentpoint = PointB.transform;
         characterScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
@@ -55,10 +57,10 @@ public class EnemyPatroller : MonoBehaviour
             flip();
             currentpoint = PointB.transform;
         }
-        if(EnemyHealth.isDead == true && PlayedOnce == 0)
+        if(enemyHealth.isDead == true && PlayedOnce == 0)
         {
             PlayedOnce++;
-            EnemyHealth.isDead = false;
+            enemyHealth.isDead = false;
             speed = 0;
             Warrior.clip = WarriorArray[1];
             Warrior.PlayOneShot(Warrior.clip);
@@ -71,16 +73,18 @@ public class EnemyPatroller : MonoBehaviour
 
         {
             WithinRange = true;
-            if(WithinRange == true)
+            if (WithinRange == true)
             {
                 Warrior.clip = WarriorArray[0];
                 Warrior.PlayOneShot(Warrior.clip);
+
             }
             speed = 1;
             WarriorAnim.SetBool("isAttacking", true);
             WarriorAnim.SetBool("isRunning", false);
             transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
         }
+
         if(Vector3.Distance(Player.position, transform.position) > range)
         {
             WithinRange = false;

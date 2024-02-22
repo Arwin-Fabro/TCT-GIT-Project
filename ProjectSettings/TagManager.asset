@@ -8,9 +8,11 @@ TagManager:
   - WizardProjectile
   - Enemy
   - Arrows
-  - Ground
   - Box
+  - Ground
   - Key
+  - Portal
+  - EndScroll
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - UI
   - 
   - 
-  - Movable
   - ground
+  - Movable
   - 
   - 
   - 

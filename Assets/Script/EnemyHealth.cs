@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     private Animator animator;
 
     public int wizardDamage = 30;
-    public static bool isDead = false;
+    public  bool isDead = false;
 
     public float deathAnimationTime = 2f; // This is how much time your animation plays before destroying
 

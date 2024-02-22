@@ -44,5 +44,9 @@ public class EnemyBullet : MonoBehaviour
             characterScript.GetComponent<Character>().TakeDamage(20);
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }

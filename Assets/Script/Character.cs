@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
 
     public Image CombatCD;
     public Image DashCD;
+    public Image HealIconCD;
 
     public GameObject EnergyShield;
     public GameObject EnergyShieldPos;
@@ -51,7 +52,7 @@ public class Character : MonoBehaviour
     public HealthBar healthBar;
     public ManaBar manaBar;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     public Text infoText;
     public GameObject infoTxt;
@@ -64,10 +65,14 @@ public class Character : MonoBehaviour
 
     public PickUp gravity;
     public string GameOverScene = "GameOver";
+
+    public bool canHeal = true;
+    public float HealCD = 30;
     
     // Start is called before the first frame update
     void Start()
     {
+        HealIconCD.fillAmount = 0;
         CombatCD.fillAmount = 0;
         DashCD.fillAmount = 0;
         CombatMode = true;
@@ -91,11 +96,43 @@ public class Character : MonoBehaviour
         {
             return;
         }
+        Heal();
         StartCoroutine(Attack());
-        Movement();
+        //Movement();
         StartCoroutine(SwitchModes());
         Death();
     }
+    void FixedUpdate()
+    {
+        Movement();
+        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
+    }
+
+    public void Heal()
+    {
+        //Healing
+        if (Input.GetKeyDown(KeyCode.Q) && currentMana >= 30 && canHeal)
+        {
+
+            canHeal = false;
+            currentMana -= 30;
+            manaBar.SetMana(currentMana);
+            currentHealth += 30;
+            healthBar.SetHealth(currentHealth);
+        }
+        if (!canHeal)
+        {
+            HealIconCD.fillAmount = 1;
+            HealCD -= Time.deltaTime;
+            HealIconCD.fillAmount -= 1 / HealCD * Time.deltaTime;
+            if (HealCD <= 0)
+            {
+                HealCD = 30;
+                canHeal = true;
+            }
+        }
+    }
+
     IEnumerator SwitchModes()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && infoDone)
@@ -122,7 +159,7 @@ public class Character : MonoBehaviour
             infoDone = true;
             infoTxt.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && infoDone)
+        /*if (Input.GetKeyDown(KeyCode.Alpha3) && infoDone)
         {
             CombatMode = false;
             GravityMode = false;
@@ -133,7 +170,9 @@ public class Character : MonoBehaviour
             yield return new WaitForSeconds(5f);
             infoDone = true;
             infoTxt.SetActive(false);
-        }
+        }*/
+
+
     }
     IEnumerator Attack()
     {
@@ -295,10 +334,6 @@ public class Character : MonoBehaviour
         }
         healthBar.SetHealth(currentHealth);
     }
-    void FixedUpdate()
-    {
-        OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
-    }
 
     public void TakeDamage(int damage)
     {
@@ -314,9 +349,7 @@ public class Character : MonoBehaviour
             currentHealth = 0;
             isDead = true;
             rb.isKinematic = false;
-            BC.enabled = false;
-            //rb.gravityScale = 0;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
             CancelInvoke("HealthRegeneration");
             animator.SetTrigger("isDead");
             Invoke("GameOver", 3f);

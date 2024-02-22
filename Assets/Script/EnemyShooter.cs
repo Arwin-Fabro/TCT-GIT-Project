@@ -15,10 +15,13 @@ public class EnemyShooter : MonoBehaviour
 
     public AudioSource Archer;
     public AudioClip Shoot;
+    public EnemyHealth enemyHealth;
+    public Character characterScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        characterScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         Archer = gameObject.GetComponent<AudioSource>();
@@ -37,8 +40,7 @@ public class EnemyShooter : MonoBehaviour
         if (timer > 2)
         {
             timer = 0;
-            //shoot();
-            if (EnemyHealth.isDead == false)
+            if (enemyHealth.GetComponent<EnemyHealth>().isDead == false && characterScript.GetComponent<Character>().isDead == false)
             {
                 StartCoroutine(shoot());
             }
