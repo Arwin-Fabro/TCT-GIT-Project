@@ -18,7 +18,7 @@ public class platformactivate : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag=="activate")
         {            
