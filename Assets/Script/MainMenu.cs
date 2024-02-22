@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     public GameObject Title;
     public GameObject Buttons;
     public GameObject Map;
+    public GameObject TutorialUI;
     public bool hasClicked = false;
     void Update()
     {
@@ -22,6 +23,7 @@ public class MainMenu : MonoBehaviour
             CloseMap();
         }
     }
+    
     public void OpenMap()
     {
         Map.SetActive(true);
@@ -35,5 +37,15 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void OpenTutorial()
+    {
+        TutorialUI.SetActive(true);
+        Buttons.SetActive(false);
+    }
+    public void CloseTutorial()
+    {
+        TutorialUI.SetActive(false);
+        Buttons.SetActive(true);
     }
 }

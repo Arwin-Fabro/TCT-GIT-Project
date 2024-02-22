@@ -68,6 +68,9 @@ public class Character : MonoBehaviour
 
     public bool canHeal = true;
     public float HealCD = 30;
+
+    public AudioSource audioSFX;
+    public AudioClip[] clips;
     
     // Start is called before the first frame update
     void Start()
@@ -85,6 +88,7 @@ public class Character : MonoBehaviour
         manaBar.SetMaxMana(maxMana);
         InvokeRepeating("ManaRegeneration", 5f, 0.5f);
         InvokeRepeating("HealthRegeneration", 5f, 1f);
+        audioSFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -96,7 +100,7 @@ public class Character : MonoBehaviour
         {
             return;
         }
-        Heal();
+        StartCoroutine(Heal());
         StartCoroutine(Attack());
         //Movement();
         StartCoroutine(SwitchModes());
@@ -108,23 +112,39 @@ public class Character : MonoBehaviour
         OnGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckradius, ground);
     }
 
-    public void Heal()
+    public IEnumerator Heal()
     {
         //Healing
         if (Input.GetKeyDown(KeyCode.Q) && currentMana >= 30 && canHeal)
         {
-
+            audioSFX.PlayOneShot(clips[2]);
             canHeal = false;
             currentMana -= 30;
             manaBar.SetMana(currentMana);
             currentHealth += 30;
             healthBar.SetHealth(currentHealth);
         }
+        else if(currentMana <= 30 && infoDone)
+        {
+            infoText.text = "Not Enough Mana";
+            infoDone = false;
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoTxt.SetActive(false);
+            infoDone = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && !canHeal && infoDone)
+        {
+            infoText.text = "CoolDown: " + Mathf.Floor(HealCD);
+            infoDone = false;
+            infoTxt.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            infoTxt.SetActive(false);
+            infoDone = true;
+        }
         if (!canHeal)
         {
-            HealIconCD.fillAmount = 1;
             HealCD -= Time.deltaTime;
-            HealIconCD.fillAmount -= 1 / HealCD * Time.deltaTime;
             if (HealCD <= 0)
             {
                 HealCD = 30;
@@ -197,6 +217,7 @@ public class Character : MonoBehaviour
         // Ability 1 (Combat Mode) : Shoot Fireball and Shockwave
         if (Input.GetMouseButtonDown(0) && CombatMode && currentMana >=5 && canFire)
         {
+            audioSFX.PlayOneShot(clips[0]);
             canFire = false;
             CombatCD.fillAmount = 1;
             currentMana -= 5;
@@ -217,6 +238,7 @@ public class Character : MonoBehaviour
         }
         if ((Input.GetMouseButtonDown(1) && CombatMode && currentMana >= 30 && canFire))
         {
+            audioSFX.PlayOneShot(clips[1]);
             canFire = false;
             CombatCD.fillAmount = 1;
             currentMana -= 30;
@@ -311,6 +333,7 @@ public class Character : MonoBehaviour
     {
         if (other.gameObject.tag == "Key")
         {
+            audioSFX.PlayOneShot(clips[4]);
             Door.Keys += 1;
             Destroy(other.gameObject);
         }
@@ -337,6 +360,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioSFX.PlayOneShot(clips[3]);
         animator.SetTrigger("isHurt");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

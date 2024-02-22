@@ -357,6 +357,7 @@ MonoBehaviour:
   Archer: {fileID: 375889136763581814}
   Shoot: {fileID: 8300000, guid: 026069bb77cbab34e8e4336f136f679c, type: 3}
   enemyHealth: {fileID: 7809084261386715644}
+  characterScript: {fileID: 0}
 --- !u!114 &7809084261386715644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,7 +639,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &3339945940707048095
 MonoBehaviour:

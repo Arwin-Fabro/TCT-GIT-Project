@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndCredit: {fileID: 1119750536}
-  speed: 240
+  speed: 60
   canScroll: 0
 --- !u!50 &860381095
 Rigidbody2D:
