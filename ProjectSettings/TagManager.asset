@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Key
   - Portal
+  - EndScroll
   layers:
   - Default
   - TransparentFX

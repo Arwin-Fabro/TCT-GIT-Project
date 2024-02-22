@@ -23,6 +23,10 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("Level3");
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void R()
     {
         if (level==1)
